@@ -68,7 +68,7 @@ export default function CreatorDashboard() {
                             src={nft.image}
                             alt="Picture of the author"
                             className="rounded"
-                            width={250}
+                            width={400}
                             height={400} 
                             // blurDataURL="data:..." automatically provided
                             // placeholder="blur" // Optional blur-up while loading

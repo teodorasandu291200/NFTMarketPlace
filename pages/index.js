@@ -6,6 +6,7 @@ import { nftaddress, nftmarketaddress } from '../config';
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json';
 import Market from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json';
 import Image from 'next/image'
+import Login from '../pages/Login'
 
 export default function Home() {
   const [nfts, setNfts] = useState([]);
@@ -85,7 +86,7 @@ export default function Home() {
                   // blurDataURL="data:..." automatically provided
                   // placeholder="blur" // Optional blur-up while loading
                 />
-                        <div className="p-4">
+              <div className="p-4">
                 <p style={{ height: '64px'}} className="text-2xl font-semibold">
                   {nft.name}
                 </p>
@@ -99,7 +100,11 @@ export default function Home() {
                 </p>
                 <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded"
                 onClick={() => buyNFT(nft)}>Buy NFT</button>
-            </div>
+              </div>
+
+              <div className="grid place-items-center h-screen bg-blue-500">
+                <Login/>
+              </div>
             </div>
           ))
         }

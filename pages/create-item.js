@@ -1,4 +1,4 @@
-import {useState } from 'react'
+import { useState } from 'react'
 import {ethers } from 'ethers'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
@@ -102,7 +102,7 @@ export default function CreateItem() {
 
     return (
         <div className="flex justify-center">
-            <div className="w-1/2 flex flex-col pb-12">
+            <div className=" flex flex-col ">
                 <input 
                     placeholder="Asset Name"
                     className="mt-8 border rounded p-4"
@@ -138,11 +138,15 @@ export default function CreateItem() {
                             // placeholder="blur" // Optional blur-up while loading
                           />
                         )
+                        
                     }
+                    
                     <button onClick={createItem}
-                     className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
-                     >Create NFT</button>
+                    className="mt-4 self-center w-1/2  flex justify-center p-4 bg-transparent font-mono text-pink-700 font-semibold hover:text-black py-2 px-2 hover:border-transparent"
+                    >Create NFT</button>
+                    
             </div>
+            
         </div>
     )
 }

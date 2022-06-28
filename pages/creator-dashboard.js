@@ -44,6 +44,8 @@ export default function CreatorDashboard() {
         owner: i.owner,
         sold: i.sold,
         image: meta.data.image,
+        name: meta.data.name,
+        description: meta.data.description,
       }
       return item
     }))
@@ -57,43 +59,54 @@ export default function CreatorDashboard() {
   return (
     <div>
       <div className="p-4">
-        <h2 className="text-2xl py-2">Items Created</h2>
+        <h2 className="text-4xl py-2 font-mono flex justify-center">Items Created</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
+              <div key={i} className=" overflow-hidden">
                
 
                         <Image
                             src={nft.image}
                             alt="Picture of the author"
-                            className="rounded"
+                            className="scale-120 hover:scale-125 ease-in duration-300"
                             width={400}
                             height={400} 
                             // blurDataURL="data:..." automatically provided
                             // placeholder="blur" // Optional blur-up while loading
                           />
 
-                <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
+                <div className="p-4">
+                  <p style={{ height: '50px'}} className="text-2xl font-mono flex justify-center ">
+                    {nft.name}
+                  </p>
+                  <div style={{ height: '30px', overflow: 'hidden'}}>
+                    <p className="text-gray-400 flex justify-center font-mono">{nft.description}</p>
+                  </div>
+                </div>
+                <div className="p-4 bg-black text-2xl mb-4 font-mono flex justify-center text-white">
+                  <p className="">{nft.price} Eth</p>
                 </div>
               </div>
             ))
           }
         </div>
       </div>
-        <div className="px-4">
+        <div className="p-4">
         {
           Boolean(sold.length) && (
             <div>
-              <h2 className="text-2xl py-2">Items sold</h2>
+              <h2 className="flex justify-center text-4xl py-2 font-mono pt-20">Items sold</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
                 {
                   sold.map((nft, i) => (
-                    <div key={i} className="border shadow rounded-xl overflow-hidden">
-                      <img src={nft.image} className="rounded" />
+                    <div key={i} className=" overflow-hidden">
+                      <img src={nft.image} width={400} height={400} className="scale-120 hover:scale-125 ease-in duration-300" />
+                      <div className="p-4">
+                        <p className="text-2xl text-white">Name - {nft.name}</p>
+                      </div>
                       <div className="p-4 bg-black">
-                        <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
+                        <p className="text-2xl font-mono text-white">Price - {nft.price} Eth</p>
                       </div>
                     </div>
                   ))

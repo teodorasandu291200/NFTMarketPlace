@@ -56,20 +56,29 @@ export default function MyAssets() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
-              <div key={i} className="border shadow rounded-xl overflow-hidden">
+              <div key={i} className="overflow-hidden">
          
 
                 <Image
                             src={nft.image}
                             alt="Picture of the author"
-                            className="rounded"
-                            width={350}
-                            height={500} 
+                            className=""
+                            width={400}
+                            height={400} 
                             // blurDataURL="data:..." automatically provided
                             // placeholder="blur" // Optional blur-up while loading
                           />
+
+                <div className="p-4">
+                  <p style={{ height: '50px'}} className="text-2xl font-mono flex justify-center ">
+                    {nft.name}
+                  </p>
+                  <div style={{ height: '30px', overflow: 'hidden'}}>
+                    <p className="text-gray-400 flex justify-center font-mono">{nft.description}</p>
+                  </div>
+                </div>
                 <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">Price - {nft.price} ETH</p>
+                  <p className="text-2xl font-mono text-white flex justify-center">{nft.price} ETH</p>
                 </div>
               </div>
             ))

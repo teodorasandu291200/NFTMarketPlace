@@ -6,7 +6,6 @@ import { nftaddress, nftmarketaddress } from '../config';
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json';
 import Market from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json';
 import Image from 'next/image'
-import Login from '../components/Login';
 
 export default function Home() {
   const [nfts, setNfts] = useState([]);
@@ -21,6 +20,7 @@ export default function Home() {
     const provider = new ethers.providers.JsonRpcProvider();
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider);
     const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider);
+    //const auctionContract = new ethers.Contract(nftauctionaddress, Auctionket.abi, provider);
 
     //return an array of unsold market items
     const data = await marketContract.fetchMarketItems();
@@ -86,9 +86,6 @@ export default function Home() {
                   // blurDataURL="data:..." automatically provided
                   // placeholder="blur" // Optional blur-up while loading
               />
-              <div className = "grid place-items-center bg-blue-500 ">
-                    <Login/>
-                </div>
 
                 <div className="p-1 ">
                   <p style={{ height: '50px'}} className="text-2xl font-mono flex justify-center ">

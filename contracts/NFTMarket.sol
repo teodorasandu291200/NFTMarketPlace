@@ -200,6 +200,14 @@ contract NFTMarket is ReentrancyGuard {
             return items;
 
         }
+        
+        
+        // function to start auction
+         function deployAuction(uint biddingTime) public payable returns (address auctionAddress) {
+            require(msg.value == 0.005 ether);
+            auctionAddress = address(new Auction( biddingTime, payable(address(this))));
+            return auctionAddress;
+        }
 
 
 

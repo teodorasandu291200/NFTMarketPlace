@@ -1,15 +1,18 @@
-import {ethers} from 'ethers';
+import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Web3Modal from "web3modal"
 import { nftaddress, nftmarketaddress } from '../config';
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json';
 import Market from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json';
+import Auction from '../artifacts/contracts/Auction.sol/Auction.json';
+import { auctionAddress } from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json';
 import Image from 'next/image'
 
 export default function Home() {
   const [nfts, setNfts] = useState([]);
   const [loadingState, setLoadingState] = useState('not-loaded');
+  const [formInput, updateFormInput] = useState({price: ''})
 
   useEffect(()=>{
     loadNFTs();
@@ -46,6 +49,7 @@ export default function Home() {
   }
 
   async function buyNFT(nft){
+    
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -65,6 +69,23 @@ export default function Home() {
 
     loadNFTs()
   }
+
+  // async function createAuction(biddingTime){
+    
+  //   const web3Modal = new Web3Modal();
+  //   const connection = await web3Modal.connect();
+  //   const provider = new ethers.providers.Web3Provider(connection);
+
+  //   //sign the transaction
+  //   const signer = provider.getSigner();
+  //   const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer);
+
+  //   //make the sale
+  //   const transactionAuction = await contract.deployAuction(biddingTime);
+  //   await transactionAuction.wait();
+  // }
+
+
 
   if(loadingState === 'loaded' && !nfts.length) return (
     <h1 className="flex justify-center space-x-4">No items in market place</h1>
@@ -99,8 +120,18 @@ export default function Home() {
                   <p className="text-2xl mb-4 font-mono flex justify-center text-white">
                     {nft.price} ETH
                   </p>
-                  <button className="w-full text-pink-700 font-mono hover:text-white font-bold py-2 px-12 text-2xl "
+                  <button className="w-full text-pink-700 font-mono hover:text-white  py-2 px-12 text-2xl "
                   onClick={() => buyNFT(nft)}>Buy NFT</button>
+
+                  <input 
+                    placeholder="Bid"
+                    className="w-full text-pink-700 font-mono  py-2 px-12 text-2xl"
+                    onChange={e => updateFormInput({...formInput, name: e.target.value})}
+                    
+                    />
+                    <button
+                    className="w-full text-pink-700 font-mono hover:text-white  py-2 px-12 text-2xl "
+                    >Bid</button>
                 </div>
             </div>
           ))

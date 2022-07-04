@@ -4,6 +4,8 @@ import Login from '../components/Login';
 import { MoralisProvider } from "react-moralis"
 
 function MyApp({ Component, pageProps }) {
+
+
   return (
     <div>
       <nav className="p-20 bg-black font-mono ">
